@@ -7,6 +7,7 @@ public class SsHeader {
 	private String sessionId;
 	private String version;
 	private String clientKey;
+	private String accessToken;
 	private Long moduleId;
 	
 	public SsHeader() {
@@ -16,6 +17,7 @@ public class SsHeader {
 		this.sessionId = builder.sessionId;
 		this.version = builder.version;
 		this.clientKey = builder.clientKey;
+		this.accessToken = builder.accessToken;
 		this.moduleId = builder.moduleId;
 	}
 
@@ -23,7 +25,7 @@ public class SsHeader {
 		private String sessionId;
 		private String version;
 		private String clientKey;
-
+		private String accessToken;
 		private Long moduleId;
 
 		
@@ -42,6 +44,11 @@ public class SsHeader {
 		
 		public SsHeaderBuilder clientKey(String clientKey) {
 			this.clientKey = clientKey;
+			return this;
+		}
+		
+		public SsHeaderBuilder accessToken(String accessToken) {
+			this.accessToken = accessToken;
 			return this;
 		}
 		
@@ -90,12 +97,19 @@ public class SsHeader {
 	public void setModuleId(Long moduleId) {
 		this.moduleId = moduleId;
 	}
-	
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}	
 
 	@Override
 	public String toString() {
 		return "SsHeader [sessionId=" + sessionId + ", version=" + version
 				+ ", clientKey=" + clientKey 
+				+ ", accessToken=" + accessToken 
 				+ ", moduleId=" + moduleId + "]";
 	}
 }
