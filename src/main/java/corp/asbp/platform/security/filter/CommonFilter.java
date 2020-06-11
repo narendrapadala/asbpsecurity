@@ -81,9 +81,13 @@ public class CommonFilter implements Filter {
 					if (headerToken.equals(properties.getAuthToken())) {
 						LOGGER.info("Sending request via auth token...");
 						if (!servletUtil.isEmptyString(httpServletRequest.getHeader(Constants.SS_HEADER))) {
-							// internal service call via token needs to be add
+							setUserAttributes(httpServletRequest, httpServletResponse, uri, method);
 						}
 						chain.doFilter(request, response);
+					}else {
+						httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+			            writeErrorResponse(httpServletResponse, HttpStatus.UNAUTHORIZED, uri, 
+			            		"Invalid token. You are not authorized to access this resource");
 					}
 				} else {
 					setUserAttributes(httpServletRequest, httpServletResponse, uri, method);
