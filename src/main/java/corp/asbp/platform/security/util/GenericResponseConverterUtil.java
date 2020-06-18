@@ -78,6 +78,11 @@ public class GenericResponseConverterUtil {
 		if (response != null) {
 			return mapper.convertValue(response, clazz);
 		}
+		
+		LOGGER.info("Error message : " + message);
+		LOGGER.info("Error status code  : " + statusCode);
+		LOGGER.info("Error url : " + url);
+		
 		throw new InternalRestApiException(message, statusCode, url);
 	}
 	

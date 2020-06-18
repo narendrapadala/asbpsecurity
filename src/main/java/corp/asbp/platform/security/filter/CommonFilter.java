@@ -62,7 +62,6 @@ public class CommonFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
-
 			HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 			HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
@@ -95,9 +94,11 @@ public class CommonFilter implements Filter {
 				}
 
 			} catch (Exception e) {
-				LOGGER.error("Error occured while calling validateSession! ", e.getMessage());
-				e.printStackTrace();
+				LOGGER.error("An error occurred while validating the user or api access, please check the logs for more details.", e.getMessage());
+				//e.printStackTrace();
+				//throw new IOException("An error occurred while validating the user or api access, please check the logs for more details.",e);
 			}
+			
 
 		}
 
